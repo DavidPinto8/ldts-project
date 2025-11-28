@@ -54,6 +54,7 @@ public class Arena {
     }
 
     public boolean isEmpty(Position position) {
+        if (position.getX() < 0 || position.getX() >= width || position.getY() < 0 || position.getY() >= height) return false; //Stop Hero and Monsters from going out of bounds
         for (Wall wall : walls)
             if (wall.getPosition().equals(position))
                 return false;
