@@ -18,7 +18,8 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     public LoaderArenaBuilder(int level) throws IOException {
         this.level = level;
 
-        URL resource = LoaderArenaBuilder.class.getResource("/levels/level" + level + ".lvl");
+        //URL resource = LoaderArenaBuilder.class.getResource("/levels/level" + level + ".lvl"); //old
+        URL resource = LoaderArenaBuilder.class.getResource("/levels/level" + 0 + ".lvl"); //new
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
         lines = readLines(br);
