@@ -27,6 +27,9 @@ public class MonsterController extends GameController {
     }
 
     private void moveMonster(Monster monster, Position position) {
+        if (position.getX()<0){ //If the monster was about to leave the screen from the left
+            position = new Position(getModel().getWidth()-1, position.getY()); //It is "teleported" to the right edge
+        }
         if (getModel().isEmpty(position)) {
             monster.setPosition(position);
             if (getModel().getHero().getPosition().equals(position))
