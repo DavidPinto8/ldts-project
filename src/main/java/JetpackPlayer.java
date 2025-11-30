@@ -8,13 +8,9 @@ public class JetpackPlayer {
     private final double jetpackPower = -0.5;
     private int score = 0;
 
-    public void addCoin() {
-        score++;
-    }
+    public void addCoin() { score++; }
 
-    public int getScore() {
-        return score;
-    }
+    public int getScore() { return score; }
 
 
     private boolean jetpackActive = false;
@@ -55,11 +51,6 @@ public class JetpackPlayer {
         graphics.putString(x, y, "J");
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
+    public int getX() { return x; }
+    public int getY() { return y; }
 }
