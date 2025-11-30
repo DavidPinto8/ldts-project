@@ -59,6 +59,9 @@ We used the MVC pattern, separating the model, the view and the controller for e
 #### Menus
 Since we used the Hero-Solid repository (available on Moodle) as a base for our project, we also used the menu system made by professor André Restivo.
 
+#### Prototype
+Inside the folder Prototype we kept a prototype of our game. It is fully functional and can be used as a base for future development.
+
 #### KNOWN CODE SMELLS
 
 - Some classes have a lot of methods/logic, which hurts readability.
