@@ -6,6 +6,8 @@ import com.aor.hero.model.Position;
 import com.aor.hero.model.game.arena.Arena;
 
 public class HeroController extends GameController {
+    private int cycle = 0;
+
     public HeroController(Arena arena) {
         super(arena);
     }
@@ -35,9 +37,19 @@ public class HeroController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.UP) moveHeroUp();
-        if (action == GUI.ACTION.RIGHT) moveHeroRight();
-        if (action == GUI.ACTION.DOWN) moveHeroDown();
-        if (action == GUI.ACTION.LEFT) moveHeroLeft();
+        if (action == GUI.ACTION.UP){
+            moveHeroUp();
+            cycle = 0; //reset the cycle
+        } else if(action == GUI.ACTION.DOWN){
+            moveHeroDown();
+            cycle = 4; //slightly reset the cycle
+        } else if (cycle >= 7) {
+            moveHeroDown(); //Gravity is pulling us down
+            cycle = 0;
+        }
+        cycle++;
+        //We won't be moving the hero horizontally but we will keep these here in case we want to add it later:
+        //if (action == GUI.ACTION.RIGHT) moveHeroRight();
+        //if (action == GUI.ACTION.LEFT) moveHeroLeft();
     }
 }
