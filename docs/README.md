@@ -17,7 +17,7 @@ This project was developed by David Monteiro (up202306751@fc.up.pt), David Pinto
 - **Power-ups** - When your character hits a power-up, it will gain a certain power, like an extra life or a way to destroy lasers.
 
 <p align="center" justify="center">
-  <img src="docs/PlannedFeatures.png" alt="Planned Features">
+  <img src="PlannedFeatures.png" alt="Planned Features">
 </p>
 <p align="center" justify="center"><b><i>Coins are C's, Heart and Bomb are Power-ups</i></b></p>
 
@@ -42,7 +42,7 @@ We have applied the **Object Pool** pattern. This pattern allows us to store the
 The Arena uses the MonsterPool whenever it wants access to the lasers. The MonsterPool stores the lasers (called Monsters in out code) that have been created and knows whether they are being used or not. When a new laser is needed, the MonsterPool returns one of the unused ones (if any are available)
 
 <p align="center" justify="center">
-  <img src="docs/MonsterPool.png" alt="Monster Pool"/>
+  <img src="MonsterPool.png" alt="Monster Pool"/>
 </p>
 <p align="center" justify="center"><b><i>MonsterPool Class Diagram</i></b></p>
 
@@ -69,7 +69,7 @@ Since we used the Hero-Solid repository (available on Moodle) as a base for our 
 Mutation testing hasn't been done yet.
 
 <p align="center" justify="center">
-  <img src="docs/Coverage.png" alt="Coverage Report"/>
+  <img src="Coverage.png" alt="Coverage Report"/>
 </p>
 <p align="center" justify="center">
 <b><i>Coverage Report</i></b>
