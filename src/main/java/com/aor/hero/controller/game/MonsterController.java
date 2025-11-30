@@ -21,12 +21,15 @@ public class MonsterController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (time - lastMovement > 500) {
             for (Monster monster : getModel().getMonsters())
-                moveMonster(monster, monster.getPosition().getRandomNeighbour());
+                moveMonster(monster, monster.getPosition().getLeft());
             this.lastMovement = time;
         }
     }
 
     private void moveMonster(Monster monster, Position position) {
+        if (position.getX()<0){ //If the monster was about to leave the screen from the left
+            position = new Position(getModel().getWidth()-1, position.getY()); //It is "teleported" to the right edge
+        }
         if (getModel().isEmpty(position)) {
             monster.setPosition(position);
             if (getModel().getHero().getPosition().equals(position))

@@ -1,6 +1,7 @@
 package com.aor.hero.gui;
 
 import com.aor.hero.model.Position;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -93,7 +94,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawMonster(Position position) {
-        drawCharacter(position.getX(), position.getY(), '@', "#E61D01");
+        drawCharacter(position.getX(), position.getY(), '|', "#E61D01");
     }
 
     @Override
