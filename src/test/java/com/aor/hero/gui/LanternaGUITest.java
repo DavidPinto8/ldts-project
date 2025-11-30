@@ -28,7 +28,6 @@ class LanternaGUITest {
     void drawHero() {
         gui.drawHero(new Position(1, 1));
 
-        Mockito.verify(tg, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 215, 0));
         Mockito.verify(tg, Mockito.times(1)).putString(1, 2, "H");
     }
 

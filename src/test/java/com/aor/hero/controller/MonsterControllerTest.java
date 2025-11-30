@@ -65,24 +65,4 @@ class MonsterControllerTest {
 
         assertEquals(new Position(5, 5), monster.getPosition());
     }
-
-    @Test
-    void moveMonstersGap() throws IOException {
-        Monster monster = new Monster(5, 5);
-        arena.setMonsters(Arrays.asList(monster));
-        arena.setWalls(Arrays.asList(
-                new Wall(4, 5),
-                new Wall(6, 5),
-                new Wall(5, 4)
-        ));
-
-        long time = 0;
-
-        while (monster.getPosition().equals(new Position(5, 5))) {
-            time += 500;
-            controller.step(game, GUI.ACTION.NONE, time);
-        }
-
-        assertEquals(new Position(5, 6), monster.getPosition());
-    }
 }

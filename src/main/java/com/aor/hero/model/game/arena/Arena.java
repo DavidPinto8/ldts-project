@@ -1,5 +1,6 @@
 package com.aor.hero.model.game.arena;
 
+import com.aor.hero.model.MonsterPool;
 import com.aor.hero.model.Position;
 import com.aor.hero.model.game.elements.Hero;
 import com.aor.hero.model.game.elements.Monster;
@@ -13,12 +14,13 @@ public class Arena {
 
     private Hero hero;
 
-    private List<Monster> monsters;
+    private MonsterPool monsterPool;
     private List<Wall> walls;
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+        this.monsterPool = new MonsterPool(100);
     }
 
     public int getWidth() {
@@ -38,11 +40,15 @@ public class Arena {
     }
 
     public List<Monster> getMonsters() {
-        return monsters;
+        return monsterPool.getInUse();
     }
 
     public void setMonsters(List<Monster> monsters) {
-        this.monsters = monsters;
+        monsterPool.setMonsters(monsters);
+    }
+
+    public MonsterPool getMonsterPool() {
+        return monsterPool;
     }
 
     public List<Wall> getWalls() {
@@ -62,7 +68,7 @@ public class Arena {
     }
 
     public boolean isMonster(Position position) {
-        for (Monster monster : monsters)
+        for (Monster monster : monsterPool.getInUse())
             if (monster.getPosition().equals(position))
                 return true;
         return false;
