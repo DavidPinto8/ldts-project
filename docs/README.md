@@ -1,85 +1,76 @@
-## LDTS_<T><G> - <PROJECT NAME>
+## LDTS_t11g02 - Jetpack Sidescroller
+In this infinite sidescroller game, you play as Hero with a Jetpack and try to dodge the red laser beams and survive as long as possible.
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
-
-**Example**:
-
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
-
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+This project was developed by David Monteiro (up202306751@fc.up.pt), David Pinto (up202404233@fe.up.pt) and Luca Zielinsky (up202302132@fe.up.pt) for LDTS 2025-2026.
 
 ### IMPLEMENTED FEATURES
+- **Flying and falling** - The game character will move up and down when the respective arrows are pressed, but it will also move down automatically if you don't press any key for a bit.
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+- **Lasers** - Red lasers are generated randomly on the right edge of the screen and they move left at a constant speed.
 
-**Examples**:
-
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **Life Total** - When you character hits a laser beam, it will lose a life. You start with 10 and the game ends when you lose all your lives.
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+- **Coins** - When your character hits a coin, their score increases by 1. The objective of the game will be to collect as many coins as possible.
+
+- **Power-ups** - When your character hits a power-up, it will gain a certain power, like an extra life or a way to destroy lasers.
+
+<p align="center" justify="center">
+  <img src="docs/PlannedFeatures.png" alt="Planned Features">
+</p>
+<p align="center" justify="center"><b><i>Coins are C's, Heart and Bomb are Power-ups</i></b></p>
+
+
+
 
 ### DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
 
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
-
-**Example of one of such subsections**:
-
-------
-
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+### The Creation of Lasers
 
 **Problem in Context**
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
+The amount of lasers (we call them Monsters in our code) could be a problem as instantiating too many lasers could slow down the game. We needed a way to avoid the excessive creation of new lasers.
 
 **The Pattern**
 
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
+We have applied the **Object Pool** pattern. This pattern allows us to store the objects we aren't currently using and get them when we do need them, thereby avoiding extra instantiations. This pattern allowed to address the problem because we could now store the lasers that hit the left border of the screen in a pool and reuse them when we were generating new lasers on the right border.
 
 **Implementation**
 
-The following figure shows how the pattern’s roles were mapped to the application classes.
+The Arena uses the MonsterPool whenever it wants access to the lasers. The MonsterPool stores the lasers (called Monsters in out code) that have been created and knows whether they are being used or not. When a new laser is needed, the MonsterPool returns one of the unused ones (if any are available)
 
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
+<p align="center" justify="center">
+  <img src="docs/MonsterPool.png" alt="Monster Pool"/>
+</p>
+<p align="center" justify="center"><b><i>MonsterPool Class Diagram</i></b></p>
 
-These classes can be found in the following files:
-
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
 
 **Consequences**
 
-The use of the State Pattern in the current design allows the following benefits:
+- The MonsterPool handles the creation and reuse of lasers, reducing the amount of unnecessary instantiations.
+- When we iterate over the Monsters in the MonsterPool to reuse the ones that have left the screen, we store those in a buffer and then clear it after the iteration so we won’t delete them while we are iterating over them.
+- We could run into issues if we try to generate new lasers when there are none available. This hasn't been a problem so far, but it could become one if we decide to increase the size of the Arena and/or the amount of lasers generated.
 
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
+#### MVC
+We used the MVC pattern, separating the model, the view and the controller for easier maintenance and development. This was made easier by our use of the Hero-Solid repository (available on Moodle) as a base for our project.
+
+#### Menus
+Since we used the Hero-Solid repository (available on Moodle) as a base for our project, we also used the menu system made by professor André Restivo.
 
 #### KNOWN CODE SMELLS
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
+- Some classes have a lot of methods/logic, which hurts readability.
+- More tests should be added.
+- More comments should be added for better readability.
 
 ### TESTING
+Mutation testing hasn't been done yet.
 
-- Screenshot of coverage report.
-- Link to mutation testing report.
-
-### SELF-EVALUATION
-
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
+<p align="center" justify="center">
+  <img src="docs/Coverage.png" alt="Coverage Report"/>
+</p>
+<p align="center" justify="center">
+<b><i>Coverage Report</i></b>
+</p>

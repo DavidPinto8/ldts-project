@@ -1,23 +1,14 @@
-# A Solid Hero
+# LDTS_t11g02 - Jetpack Sidescroller
 
-The LDTS Hero project done using SOLID principles and Design Patterns
+In this infinite sidescroller game, you play as Hero with a Jetpack and try to dodge the red laser beams and survive as long as possible. Use the arrow keys to move up and down (Enter on the menu to start) and be careful with your life value.
 
-## UML Class Diagram
+This project was developed by David Monteiro (up202306751@fc.up.pt), David Pinto (up202404233@fe.up.pt) and Luca Zielinsky (up202302132@fe.up.pt) for LDTS 2025-2026.
 
-A UML class diagram showcasing used Design Patterns:
 
-![UML class diagram](docs/hero-solid.png)
+## Screenshots
 
-## UML Communication Diagrams
+Here you can see what the menu and the gameplay look like:
 
-A UML communication diagram showing how classes communicate during a game step when the menu state is active:
-
-![UML class diagram](docs/hero-communication-menu.png)
-
-A UML communication diagram showing how classes communicate during a game step when the menu state and the user selects an option:
-
-![UML class diagram](docs/hero-communication-change-state.png)
-
-A UML communication diagram showing how classes communicate during a game step when the game state is active:
-
-![UML class diagram](docs/hero-communication-game.png)
+![](docs/Menu.png)
+![](docs/Lasers are coming.png)
+![](docs/Playing.png)
