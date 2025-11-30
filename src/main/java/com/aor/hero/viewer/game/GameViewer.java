@@ -19,7 +19,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
         drawElement(gui, getModel().getHero(), new HeroViewer());
 
-        gui.drawText(new Position(0, 0), "Life: " + getModel().getHero().getEnergy(), "#4DD65D");
+        gui.drawText(new Position(getModel().getWidth()/2-4, 0), "Life: " + getModel().getHero().getEnergy(), "#4DD65D"); //Life value will be centered on the top of the screen
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
