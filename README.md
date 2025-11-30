@@ -10,5 +10,5 @@ This project was developed by David Monteiro (up202306751@fc.up.pt), David Pinto
 Here you can see what the menu and the gameplay look like:
 
 ![](docs/Menu.png)
-![](docs/Lasers are coming.png)
+![](docs/Lasers%20are%20coming.png)
 ![](docs/Playing.png)
