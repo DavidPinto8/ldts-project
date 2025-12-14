@@ -7,7 +7,8 @@ public class DestroyLaserPowerUp extends PowerUp {
     }
 
     @Override
-    public void apply(Hero hero) {
-        hero.enableLaserImmunity();
+    public void apply(Hero hero, long time) {
+        hero.activateLaserImmunity(5000, time);
     }
+
 }
