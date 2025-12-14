@@ -5,6 +5,9 @@ import com.t11g02.Sidescroller.model.Position;
 import com.t11g02.Sidescroller.model.game.elements.Hero;
 import com.t11g02.Sidescroller.model.game.elements.Monster;
 import com.t11g02.Sidescroller.model.game.elements.Wall;
+import com.t11g02.Sidescroller.model.CoinPool;
+import com.t11g02.Sidescroller.model.Score;
+import com.t11g02.Sidescroller.model.game.elements.Coin;
 
 import java.util.List;
 
@@ -17,10 +20,17 @@ public class Arena {
     private MonsterPool monsterPool;
     private List<Wall> walls;
 
+    private CoinPool coinPool;
+    private Score score;
+
+
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
         this.monsterPool = new MonsterPool(100);
+        this.coinPool = new CoinPool(50);
+        this.score = new Score();
+
     }
 
     public int getWidth() {
@@ -38,6 +48,7 @@ public class Arena {
     public void setHero(Hero hero) {
         this.hero = hero;
     }
+
 
     public List<Monster> getMonsters() {
         return monsterPool.getInUse();
@@ -58,6 +69,15 @@ public class Arena {
     public void setWalls(List<Wall> walls) {
         this.walls = walls;
     }
+
+    public CoinPool getCoinPool() {
+        return coinPool;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
 
     public boolean isEmpty(Position position) {
         if (position.getX() < 0 || position.getX() >= width || position.getY() < 0 || position.getY() >= height) return false; //Stop Hero and Monsters from going out of bounds
