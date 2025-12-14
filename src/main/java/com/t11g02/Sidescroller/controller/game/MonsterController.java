@@ -5,6 +5,9 @@ import com.t11g02.Sidescroller.gui.GUI;
 import com.t11g02.Sidescroller.model.Position;
 import com.t11g02.Sidescroller.model.game.arena.Arena;
 import com.t11g02.Sidescroller.model.game.elements.Monster;
+import com.t11g02.Sidescroller.model.game.elements.ExtraLifePowerUp;
+import com.t11g02.Sidescroller.model.game.elements.DestroyLaserPowerUp;
+
 
 import java.io.IOException;
 import java.util.Random;
@@ -43,6 +46,19 @@ public class MonsterController extends GameController {
         }
     }
 
+    private void spawnPowerUp(Position position) {
+        if (getModel().getPowerUpPool().getInUse().size() > 5) return;
+
+        if (Math.random() < 0.5) {
+            getModel().getPowerUpPool().getInUse()
+                    .add(new ExtraLifePowerUp(position.getX(), position.getY()));
+        } else {
+            getModel().getPowerUpPool().getInUse()
+                    .add(new DestroyLaserPowerUp(position.getX(), position.getY()));
+        }
+    }
+
+
     private void moveMonster(Monster monster, Position position) {
         if (position.getX()<0){ //If the monster was about to leave the screen from the left
             getModel().getMonsterPool().addToRemovalBuffer(monster); //Mark the monster for removal
@@ -53,7 +69,13 @@ public class MonsterController extends GameController {
             if (getModel().getHero().getPosition().equals(position)) {
                 if (getModel().getHero().hasLaserImmunity()) {
                     getModel().getMonsterPool().addToRemovalBuffer(monster);
-                } else {
+
+                    if (Math.random() < 0.2) {
+                        spawnPowerUp(monster.getPosition());
+                    }
+                }
+
+            } else {
                     getModel().getHero().decreaseEnergy();
                 }
             }
