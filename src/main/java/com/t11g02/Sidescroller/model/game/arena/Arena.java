@@ -29,6 +29,8 @@ public class Arena {
 
     private PowerUpPool extraLifePowerUpPool;
     private PowerUpPool destroyLaserPowerUpPool;
+    private PowerUpPool powerUpPool;
+
 
 
 
@@ -40,6 +42,8 @@ public class Arena {
         this.score = new Score();
         this.extraLifePowerUpPool = new PowerUpPool(10, PowerUpType.EXTRA_LIFE);
         this.destroyLaserPowerUpPool = new PowerUpPool(10, PowerUpType.DESTROY_LASER);
+        this.powerUpPool = new PowerUpPool();
+
 
 
 
@@ -97,6 +101,11 @@ public class Arena {
     public PowerUpPool getDestroyLaserPowerUpPool() {
         return destroyLaserPowerUpPool;
     }
+
+    public PowerUpPool getPowerUpPool() {
+        return powerUpPool;
+    }
+
 
 
 
