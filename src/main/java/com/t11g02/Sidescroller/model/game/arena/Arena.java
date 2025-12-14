@@ -8,6 +8,10 @@ import com.t11g02.Sidescroller.model.game.elements.Wall;
 import com.t11g02.Sidescroller.model.CoinPool;
 import com.t11g02.Sidescroller.model.Score;
 import com.t11g02.Sidescroller.model.game.elements.Coin;
+import com.t11g02.Sidescroller.model.PowerUpPool;
+import com.t11g02.Sidescroller.model.PowerUpType;
+import com.t11g02.Sidescroller.model.game.elements.PowerUp;
+
 
 import java.util.List;
 
@@ -23,6 +27,10 @@ public class Arena {
     private CoinPool coinPool;
     private Score score;
 
+    private PowerUpPool extraLifePowerUpPool;
+    private PowerUpPool destroyLaserPowerUpPool;
+
+
 
     public Arena(int width, int height) {
         this.width = width;
@@ -30,6 +38,10 @@ public class Arena {
         this.monsterPool = new MonsterPool(100);
         this.coinPool = new CoinPool(50);
         this.score = new Score();
+        this.extraLifePowerUpPool = new PowerUpPool(10, PowerUpType.EXTRA_LIFE);
+        this.destroyLaserPowerUpPool = new PowerUpPool(10, PowerUpType.DESTROY_LASER);
+
+
 
     }
 
@@ -77,6 +89,15 @@ public class Arena {
     public Score getScore() {
         return score;
     }
+
+    public PowerUpPool getExtraLifePowerUpPool() {
+        return extraLifePowerUpPool;
+    }
+
+    public PowerUpPool getDestroyLaserPowerUpPool() {
+        return destroyLaserPowerUpPool;
+    }
+
 
 
     public boolean isEmpty(Position position) {
