@@ -20,6 +20,11 @@ public class Hero extends Element {
         this.energy--;
     }
 
+    public void increaseEnergy() {
+        this.energy++;
+    }
+
+
     public int getEnergy() {
         return energy;
     }
