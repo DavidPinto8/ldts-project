@@ -40,8 +40,6 @@ public class Arena {
         this.monsterPool = new MonsterPool(100);
         this.coinPool = new CoinPool(50);
         this.score = new Score();
-        this.extraLifePowerUpPool = new PowerUpPool(10, PowerUpType.EXTRA_LIFE);
-        this.destroyLaserPowerUpPool = new PowerUpPool(10, PowerUpType.DESTROY_LASER);
         this.powerUpPool = new PowerUpPool();
 
 
