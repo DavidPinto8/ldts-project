@@ -13,6 +13,7 @@ public class MonsterController extends GameController {
     private long lastMovement;
     private int cycle;
 
+
     public MonsterController(Arena arena) {
         super(arena);
         cycle=0;
@@ -48,8 +49,15 @@ public class MonsterController extends GameController {
         }
         if (getModel().isEmpty(position)) {
             monster.setPosition(position);
-            if (getModel().getHero().getPosition().equals(position))
-                getModel().getHero().decreaseEnergy();
+
+            if (getModel().getHero().getPosition().equals(position)) {
+                if (getModel().getHero().hasLaserImmunity()) {
+                    getModel().getMonsterPool().addToRemovalBuffer(monster);
+                } else {
+                    getModel().getHero().decreaseEnergy();
+                }
+            }
         }
+
     }
 }
