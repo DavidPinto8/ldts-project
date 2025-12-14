@@ -37,6 +37,7 @@ public class HeroController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
+        getModel().getHero().updatePowerUps(time);
         if (action == GUI.ACTION.UP){
             moveHeroUp();
             cycle = 0; //reset the cycle
