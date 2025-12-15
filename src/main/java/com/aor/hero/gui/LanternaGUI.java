@@ -124,4 +124,13 @@ public class LanternaGUI implements GUI {
     public void close() throws IOException {
         screen.close();
     }
+    @Override
+    public void drawCoin(Position position) {
+        drawText(position, "C", "#FFD700"); // amarelo para coin
+    }
+
+    @Override
+    public void drawPowerUp(Position position) {
+        drawText(position, "P", "#4DD65D"); // verde para power-up
+    }
 }

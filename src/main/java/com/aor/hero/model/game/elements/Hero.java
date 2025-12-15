@@ -9,8 +9,17 @@ public class Hero extends Element {
     }
 
     public void decreaseEnergy() {
-        this.energy--;
+        if (this.energy > 0) {
+            this.energy--;
+        }
     }
+
+    public void increaseEnergy() {
+        if (this.energy < 10) { // máximo de 10
+            this.energy++;
+        }
+    }
+
 
     public int getEnergy() {
         return energy;
