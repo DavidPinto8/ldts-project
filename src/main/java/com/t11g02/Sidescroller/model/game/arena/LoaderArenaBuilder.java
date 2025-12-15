@@ -3,6 +3,10 @@ package com.t11g02.Sidescroller.model.game.arena;
 import com.t11g02.Sidescroller.model.game.elements.Hero;
 import com.t11g02.Sidescroller.model.game.elements.Monster;
 import com.t11g02.Sidescroller.model.game.elements.Wall;
+import com.t11g02.Sidescroller.model.game.elements.Coin;
+import com.t11g02.Sidescroller.model.game.elements.PowerUp;
+import com.t11g02.Sidescroller.model.game.elements.ExtraLifePowerUp;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -80,4 +84,35 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         }
         return null;
     }
+
+    @Override
+    protected List<Coin> createCoins() {
+        List<Coin> coins = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == 'C')
+                    coins.add(new Coin(x, y));
+            }
+        }
+        return coins;
+    }
+
+    @Override
+    protected List<PowerUp> createPowerUps() {
+        List<PowerUp> powerUps = new ArrayList<>();
+
+        for (int y = 0; y < lines.size(); y++) {
+            String line = lines.get(y);
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) == '*') {
+                    powerUps.add(new ExtraLifePowerUp(x, y));
+                }
+            }
+        }
+        return powerUps;
+    }
+
+
 }

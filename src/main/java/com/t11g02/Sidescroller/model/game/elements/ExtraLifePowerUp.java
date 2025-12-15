@@ -8,6 +8,6 @@ public class ExtraLifePowerUp extends PowerUp {
 
     @Override
     public void apply(Hero hero) {
-        hero.decreaseEnergy(); // ou increaseEnergy se quiseres dar vida extra
+        hero.increaseEnergy();
     }
 }

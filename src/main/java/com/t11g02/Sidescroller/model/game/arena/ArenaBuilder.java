@@ -3,6 +3,9 @@ package com.t11g02.Sidescroller.model.game.arena;
 import com.t11g02.Sidescroller.model.game.elements.Hero;
 import com.t11g02.Sidescroller.model.game.elements.Monster;
 import com.t11g02.Sidescroller.model.game.elements.Wall;
+import com.t11g02.Sidescroller.model.game.elements.Coin;
+import com.t11g02.Sidescroller.model.game.elements.PowerUp;
+
 
 import java.util.List;
 
@@ -13,6 +16,9 @@ public abstract class ArenaBuilder {
         arena.setHero(createHero());
         arena.setMonsters(createMonsters());
         arena.setWalls(createWalls());
+
+        arena.getCoinPool().setCoins(createCoins());
+        arena.getPowerUpPool().setPowerUps(createPowerUps());
 
         return arena;
     }
@@ -26,4 +32,8 @@ public abstract class ArenaBuilder {
     protected abstract List<Monster> createMonsters();
 
     protected abstract Hero createHero();
+
+    protected abstract List<Coin> createCoins();
+    protected abstract List<PowerUp> createPowerUps();
+
 }

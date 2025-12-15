@@ -5,81 +5,65 @@ import com.t11g02.Sidescroller.gui.GUI;
 import com.t11g02.Sidescroller.model.Position;
 import com.t11g02.Sidescroller.model.game.arena.Arena;
 import com.t11g02.Sidescroller.model.game.elements.Monster;
-import com.t11g02.Sidescroller.model.game.elements.ExtraLifePowerUp;
-import com.t11g02.Sidescroller.model.game.elements.DestroyLaserPowerUp;
-
 
 import java.io.IOException;
 import java.util.Random;
 
 public class MonsterController extends GameController {
-    private long lastMovement;
-    private int cycle;
 
+    private long lastMovement = 0;
+    private int cycle = 0;
 
     public MonsterController(Arena arena) {
         super(arena);
-        cycle=0;
-        this.lastMovement = 0;
     }
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
+
         if (time - lastMovement > 500) {
-            for (Monster monster : getModel().getMonsters())
-                moveMonster(monster, monster.getPosition().getLeft());
-            getModel().getMonsterPool().clearBuffer(); //Remove the monsters marked for removal
+
+            for (Monster monster : getModel().getMonsters()) {
+                moveMonster(monster);
+            }
+
+            getModel().getMonsterPool().clearBuffer();
+
             cycle++;
-            if (cycle==2){
+            if (cycle == 2) {
                 spawnMonsters();
-                cycle=0;
+                cycle = 0;
             }
-            this.lastMovement = time;
+
+            lastMovement = time;
         }
     }
 
-    private void spawnMonsters(){
+    private void moveMonster(Monster monster) {
+
+        Position newPos = monster.getPosition().getLeft();
+
+        if (newPos.getX() < 0) {
+            getModel().getMonsterPool().addToRemovalBuffer(monster);
+            return;
+        }
+
+        if (getModel().isEmpty(newPos)) {
+            monster.setPosition(newPos);
+
+            if (newPos.equals(getModel().getHero().getPosition())) {
+                getModel().getHero().decreaseEnergy();
+            }
+        }
+    }
+
+    private void spawnMonsters() {
         Random random = new Random();
-        for (int i=0; i<random.nextInt(5,10); i++) { //Spawn some monsters
-            int y = random.nextInt(1,19);
-            getModel().getMonsterPool().getNewMonsterAt(getModel().getWidth() - 1, y);
+
+        for (int i = 0; i < random.nextInt(5, 10); i++) {
+            int y = random.nextInt(1, getModel().getHeight() - 1);
+            getModel().getMonsterPool()
+                    .getNewMonsterAt(getModel().getWidth() - 1, y);
         }
-    }
-
-    private void spawnPowerUp(Position position) {
-        if (getModel().getPowerUpPool().getInUse().size() > 5) return;
-
-        if (Math.random() < 0.5) {
-            getModel().getPowerUpPool().getInUse()
-                    .add(new ExtraLifePowerUp(position.getX(), position.getY()));
-        } else {
-            getModel().getPowerUpPool().getInUse()
-                    .add(new DestroyLaserPowerUp(position.getX(), position.getY()));
-        }
-    }
-
-
-    private void moveMonster(Monster monster, Position position) {
-        if (position.getX()<0){ //If the monster was about to leave the screen from the left
-            getModel().getMonsterPool().addToRemovalBuffer(monster); //Mark the monster for removal
-        }
-        if (getModel().isEmpty(position)) {
-            monster.setPosition(position);
-
-            if (getModel().getHero().getPosition().equals(position)) {
-                if (getModel().getHero().hasLaserImmunity()) {
-                    getModel().getMonsterPool().addToRemovalBuffer(monster);
-
-                    if (Math.random() < 0.2) {
-                        spawnPowerUp(monster.getPosition());
-                    }
-                }
-
-            } else {
-                    getModel().getHero().decreaseEnergy();
-                }
-            }
-        }
-
     }
 }

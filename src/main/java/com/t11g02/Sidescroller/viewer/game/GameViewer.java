@@ -9,6 +9,7 @@ import com.t11g02.Sidescroller.viewer.Viewer;
 import java.util.List;
 
 public class GameViewer extends Viewer<Arena> {
+
     public GameViewer(Arena arena) {
         super(arena);
     }
@@ -16,12 +17,24 @@ public class GameViewer extends Viewer<Arena> {
     @Override
     public void drawElements(GUI gui) {
         drawElements(gui, getModel().getWalls(), new WallViewer());
+        drawElements(gui, getModel().getCoinPool().getInUse(), new CoinViewer());
         drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        drawElement(gui, getModel().getHero(), new HeroViewer());
         drawElements(gui, getModel().getPowerUpPool().getInUse(), new PowerUpViewer());
+        drawElement(gui, getModel().getHero(), new HeroViewer());
 
+        // VIDA
+        gui.drawText(
+                new Position(1, 0),
+                "Life: " + getModel().getHero().getEnergy(),
+                "#4DD65D"
+        );
 
-        gui.drawText(new Position(getModel().getWidth()/2-4, 0), "Life: " + getModel().getHero().getEnergy(), "#4DD65D"); //Life value will be centered on the top of the screen
+        // SCORE
+        gui.drawText(
+                new Position(getModel().getWidth() - 10, 0),
+                "Score: " + getModel().getScore().getScore(),
+                "#FFD700"
+        );
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

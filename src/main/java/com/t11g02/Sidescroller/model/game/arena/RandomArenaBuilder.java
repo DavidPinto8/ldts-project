@@ -3,6 +3,9 @@ package com.t11g02.Sidescroller.model.game.arena;
 import com.t11g02.Sidescroller.model.game.elements.Hero;
 import com.t11g02.Sidescroller.model.game.elements.Monster;
 import com.t11g02.Sidescroller.model.game.elements.Wall;
+import com.t11g02.Sidescroller.model.game.elements.Coin;
+import com.t11g02.Sidescroller.model.game.elements.PowerUp;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,4 +67,15 @@ public class RandomArenaBuilder extends ArenaBuilder {
     protected Hero createHero() {
         return new Hero(width / 2, height / 2);
     }
+
+    @Override
+    protected List<Coin> createCoins() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    protected List<PowerUp> createPowerUps() {
+        return new ArrayList<>();
+    }
+
 }

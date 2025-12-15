@@ -1,6 +1,8 @@
 package com.t11g02.Sidescroller.model;
 
 import com.t11g02.Sidescroller.model.game.elements.Coin;
+import java.util.List;
+
 
 public class CoinPool extends ObjectPool<Coin> {
 
@@ -18,4 +20,9 @@ public class CoinPool extends ObjectPool<Coin> {
         }
         return c;
     }
+
+    public void setCoins(List<Coin> coins) {
+        inUse.addAll(coins);
+    }
+
 }

@@ -1,13 +1,14 @@
 package com.t11g02.Sidescroller.model;
 
 public class Score {
-    private int value;
 
-    public void add(int points) {
-        value += points;
+    private int score = 0;
+
+    public int getScore() {
+        return score;
     }
 
-    public int getValue() {
-        return value;
+    public void increase(int value) {
+        score += value;
     }
 }
