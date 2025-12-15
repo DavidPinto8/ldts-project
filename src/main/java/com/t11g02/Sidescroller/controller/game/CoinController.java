@@ -55,7 +55,7 @@ public class CoinController extends GameController {
 
     private void spawnCoin() {
         int x = getModel().getWidth() - 1;
-        int y = random.nextInt(1, getModel().getHeight() - 1); // dentro da arena
+        int y = random.nextInt(2, getModel().getHeight() - 1); // dentro da arena
 
         getModel().getCoinPool().getInUse().add(new Coin(x, y));
     }

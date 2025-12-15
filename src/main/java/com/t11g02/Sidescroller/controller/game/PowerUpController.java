@@ -56,7 +56,7 @@ public class PowerUpController extends GameController {
 
     private void spawnPowerUp() {
         int x = getModel().getWidth() - 1;
-        int y = random.nextInt(1, getModel().getHeight() - 1); // dentro da arena
+        int y = random.nextInt(2, getModel().getHeight() - 1); // dentro da arena
 
         getModel().getPowerUpPool().getInUse().add(new ExtraLifePowerUp(x, y));
     }
