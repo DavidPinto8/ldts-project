@@ -25,6 +25,7 @@ public class HeroController extends GameController {
 
         if (getModel().isEmpty(nextPosition)) {
             getModel().getHero().setPosition(nextPosition);
+            if (getModel().isMonster(nextPosition)) getModel().getHero().decreaseEnergy(time);
         }
     }
 }

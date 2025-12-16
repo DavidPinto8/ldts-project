@@ -24,7 +24,7 @@ public class MonsterController extends GameController {
         if (time - lastMovement > 500) {
 
             for (Monster monster : getModel().getMonsters()) {
-                moveMonster(monster);
+                moveMonster(monster,time);
             }
 
             getModel().getMonsterPool().clearBuffer();
@@ -39,7 +39,7 @@ public class MonsterController extends GameController {
         }
     }
 
-    private void moveMonster(Monster monster) {
+    private void moveMonster(Monster monster, long time) {
 
         Position newPos = monster.getPosition().getLeft();
 
@@ -52,7 +52,7 @@ public class MonsterController extends GameController {
             monster.setPosition(newPos);
 
             if (newPos.equals(getModel().getHero().getPosition())) {
-                getModel().getHero().decreaseEnergy();
+                getModel().getHero().decreaseEnergy(time);
             }
         }
     }
