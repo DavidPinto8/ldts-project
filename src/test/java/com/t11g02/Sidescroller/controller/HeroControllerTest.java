@@ -30,6 +30,8 @@ class HeroControllerTest {
         controller = new HeroController(arena);
     }
 
+    /* These tests have been commented out because the HeroController's movement logic has changed
+       to only allow vertical movement (UP and DOWN). Horizontal movement (LEFT and RIGHT) is no longer implemented
     @Test
     void moveHeroRightEmpty() {
         controller.moveHeroRight();
@@ -41,5 +43,5 @@ class HeroControllerTest {
         arena.setWalls(Arrays.asList(new Wall(6, 5)));
         controller.moveHeroRight();
         assertEquals(new Position(5, 5), hero.getPosition());
-    }
+    }*/
 }
