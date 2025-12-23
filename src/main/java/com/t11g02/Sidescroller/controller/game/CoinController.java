@@ -3,6 +3,7 @@ package com.t11g02.Sidescroller.controller.game;
 import com.t11g02.Sidescroller.Game;
 import com.t11g02.Sidescroller.gui.GUI;
 import com.t11g02.Sidescroller.model.Position;
+import com.t11g02.Sidescroller.model.Score;
 import com.t11g02.Sidescroller.model.game.arena.Arena;
 import com.t11g02.Sidescroller.model.game.elements.Coin;
 
@@ -31,7 +32,7 @@ public class CoinController extends GameController {
             );
 
             if (next.equals(heroCollisionPos)) {
-                getModel().getScore().increase(1);
+                Score.getInstance().increase(1);
                 getModel().getCoinPool().addToRemovalBuffer(c);
                 continue;
             }

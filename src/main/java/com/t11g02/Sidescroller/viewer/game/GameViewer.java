@@ -2,6 +2,7 @@ package com.t11g02.Sidescroller.viewer.game;
 
 import com.t11g02.Sidescroller.gui.GUI;
 import com.t11g02.Sidescroller.model.Position;
+import com.t11g02.Sidescroller.model.Score;
 import com.t11g02.Sidescroller.model.game.arena.Arena;
 import com.t11g02.Sidescroller.model.game.elements.Element;
 import com.t11g02.Sidescroller.viewer.Viewer;
@@ -32,7 +33,7 @@ public class GameViewer extends Viewer<Arena> {
         // SCORE
         gui.drawText(
                 new Position(getModel().getWidth() - 10, 0),
-                "Score: " + getModel().getScore().getScore(),
+                "Score: " + Score.getInstance().getScore(),
                 "#FFD700"
         );
     }

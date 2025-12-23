@@ -2,6 +2,7 @@ package com.t11g02.Sidescroller.controller.game;
 
 import com.t11g02.Sidescroller.Game;
 import com.t11g02.Sidescroller.gui.GUI;
+import com.t11g02.Sidescroller.model.Score;
 import com.t11g02.Sidescroller.model.game.arena.Arena;
 import com.t11g02.Sidescroller.states.MenuState;
 import com.t11g02.Sidescroller.model.menu.Menu;
@@ -25,9 +26,10 @@ public class ArenaController extends GameController {
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (action == GUI.ACTION.QUIT || getModel().getHero().getEnergy() <= 0)
+        if (action == GUI.ACTION.QUIT || getModel().getHero().getEnergy() <= 0) {
+            Score.getInstance().reset();
             game.setState(new MenuState(new Menu()));
-        else {
+        } else {
             heroController.step(game, action, time);
             monsterController.step(game, action, time);
             powerUpController.step(game, action, time);

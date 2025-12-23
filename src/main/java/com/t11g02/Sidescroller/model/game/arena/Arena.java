@@ -25,7 +25,6 @@ public class Arena {
     private List<Wall> walls;
 
     private CoinPool coinPool;
-    private Score score;
 
     private PowerUpPool extraLifePowerUpPool;
     private PowerUpPool destroyLaserPowerUpPool;
@@ -39,7 +38,6 @@ public class Arena {
         this.height = height;
         this.monsterPool = new MonsterPool(100);
         this.coinPool = new CoinPool(50);
-        this.score = new Score();
         this.powerUpPool = new PowerUpPool();
 
 
@@ -86,10 +84,6 @@ public class Arena {
 
     public CoinPool getCoinPool() {
         return coinPool;
-    }
-
-    public Score getScore() {
-        return score;
     }
 
     public PowerUpPool getExtraLifePowerUpPool() {
