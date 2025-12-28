@@ -13,14 +13,6 @@ public class CoinPool extends ObjectPool<Coin> {
         }
     }
 
-    public Coin getNewCoinAt(int x, int y) {
-        Coin c = super.getNewObject();
-        if (c != null) {
-            c.setPosition(new Position(x, y));
-        }
-        return c;
-    }
-
     public void setCoins(List<Coin> coins) {
         inUse.addAll(coins);
     }

@@ -12,6 +12,5 @@ public class PowerUpPool extends ObjectPool<PowerUp> {
     public void setPowerUps(List<PowerUp> powerUps) {
         inUse.addAll(powerUps);
     }
-
 }
 

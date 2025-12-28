@@ -6,7 +6,6 @@ import net.jqwik.api.Property;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PositionTest {
-    private Position position;
 
     @Property
     void getLeft(@ForAll int x, @ForAll int y) {
@@ -30,5 +29,12 @@ class PositionTest {
     void getDown(@ForAll int x, @ForAll int y) {
         assertEquals(x, new Position(x, y).getDown().getX());
         assertEquals(y + 1, new Position(x, y).getDown().getY());
+    }
+
+    @Property
+    void hashCodeEquals(@ForAll int x, @ForAll int y) {
+        Position pos1 = new Position(x, y);
+        Position pos2 = new Position(x, y);
+        assertEquals(pos1.hashCode(), pos2.hashCode());
     }
 }

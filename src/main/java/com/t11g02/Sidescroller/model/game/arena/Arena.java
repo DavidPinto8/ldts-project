@@ -9,7 +9,6 @@ import com.t11g02.Sidescroller.model.CoinPool;
 import com.t11g02.Sidescroller.model.Score;
 import com.t11g02.Sidescroller.model.game.elements.Coin;
 import com.t11g02.Sidescroller.model.PowerUpPool;
-import com.t11g02.Sidescroller.model.PowerUpType;
 import com.t11g02.Sidescroller.model.game.elements.PowerUp;
 
 
