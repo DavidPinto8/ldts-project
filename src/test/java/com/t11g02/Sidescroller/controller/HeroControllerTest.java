@@ -1,5 +1,6 @@
 package com.t11g02.Sidescroller.controller;
 
+import com.t11g02.Sidescroller.Game;
 import com.t11g02.Sidescroller.controller.game.HeroController;
 import com.t11g02.Sidescroller.model.Position;
 import com.t11g02.Sidescroller.model.game.arena.Arena;
@@ -8,6 +9,9 @@ import com.t11g02.Sidescroller.model.game.elements.Wall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,10 +20,12 @@ class HeroControllerTest {
     private HeroController controller;
     private Hero hero;
     private Arena arena;
+    private Game game;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws IOException, URISyntaxException, FontFormatException {
         arena = new Arena(10, 10);
+        game = new Game();
 
         hero = new Hero(5, 5);
         arena.setHero(hero);
@@ -30,18 +36,15 @@ class HeroControllerTest {
         controller = new HeroController(arena);
     }
 
-    /* These tests have been commented out because the HeroController's movement logic has changed
-       to only allow vertical movement (UP and DOWN). Horizontal movement (LEFT and RIGHT) is no longer implemented
     @Test
-    void moveHeroRightEmpty() {
-        controller.moveHeroRight();
-        assertEquals(new Position(6, 5), hero.getPosition());
+    void moveHeroUp() throws IOException {
+        controller.step(game, com.t11g02.Sidescroller.gui.GUI.ACTION.UP, 0);
+        assertEquals(new Position(5, 4), hero.getPosition());
     }
 
     @Test
-    void moveHeroRightNotEmpty() {
-        arena.setWalls(Arrays.asList(new Wall(6, 5)));
-        controller.moveHeroRight();
-        assertEquals(new Position(5, 5), hero.getPosition());
-    }*/
+    void moveHeroDown() throws IOException {
+        controller.step(game, com.t11g02.Sidescroller.gui.GUI.ACTION.DOWN, 0);
+        assertEquals(new Position(5, 6), hero.getPosition());
+    }
 }
