@@ -25,7 +25,6 @@ class HeroControllerTest {
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
         arena = new Arena(10, 10);
-        game = new Game();
 
         hero = new Hero(5, 5);
         arena.setHero(hero);
@@ -38,13 +37,13 @@ class HeroControllerTest {
 
     @Test
     void moveHeroUp() throws IOException {
-        controller.step(game, com.t11g02.Sidescroller.gui.GUI.ACTION.UP, 0);
+        controller.step(null, com.t11g02.Sidescroller.gui.GUI.ACTION.UP, 0);
         assertEquals(new Position(5, 4), hero.getPosition());
     }
 
     @Test
     void moveHeroDown() throws IOException {
-        controller.step(game, com.t11g02.Sidescroller.gui.GUI.ACTION.DOWN, 0);
+        controller.step(null, com.t11g02.Sidescroller.gui.GUI.ACTION.DOWN, 0);
         assertEquals(new Position(5, 6), hero.getPosition());
     }
 }

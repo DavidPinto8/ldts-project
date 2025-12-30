@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'info.solidsoft.pitest' version '1.6.0'
+    id 'info.solidsoft.pitest' version '1.15.0'
 }
 
 group 'com.t11g02.Sidescroller'
@@ -12,7 +12,7 @@ repositories {
 }
 
 pitest {
-    junit5PluginVersion = '0.12'
+    junit5PluginVersion = '1.0.0'
 }
 
 application {

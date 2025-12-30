@@ -85,14 +85,6 @@ public class Arena {
         return coinPool;
     }
 
-    public PowerUpPool getExtraLifePowerUpPool() {
-        return extraLifePowerUpPool;
-    }
-
-    public PowerUpPool getDestroyLaserPowerUpPool() {
-        return destroyLaserPowerUpPool;
-    }
-
     public PowerUpPool getPowerUpPool() {
         return powerUpPool;
     }

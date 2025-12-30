@@ -1,6 +1,13 @@
 .gradle/
 .idea/
-build/
+build/classes
+build/distributions
+build/generated
+build/libs
+build/resources
+build/scripts
+build/test-results
+build/tmp
 out/
 *.iml
 HighScore.txt
